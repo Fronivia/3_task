@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Библиотека книг</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="src/components/book/book.js"></script>
+    <script defer src="src/Store.js"></script>
+    <script defer src="src/Node.js"></script>
+    <script defer src="src/utils.js"></script>
+    <script defer src="src/index.js"></script>
+</head>
+<body>
+    <div id="app" class="app">
+        <main class="main">
+            <section class="library">
+                <section class="book-management-container">
+                    <h1 class="title">Любимые книги</h1>
+                    <div class="book-management favorite-books">
+                        <div class="favorite-books__container js__favorite-books">
+                            <div class="favorite-books__item book">
+                                <h2 class="book__title">Book number</h2>
+
+                                <div class="book__buttons-container">
+                                    <button class="book__button book__edit-button">Ред.</button>
+                                    <button class="book__button book__done-button">Прочитал</button>
+                                    <button class="book__button book__read-button">Читать</button>
+                                    <button class="book__button book__delete-button">Х</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book__drop-dawn-area favorite-books__drop-dawn-area js__favorite-books-drop">drop down area</div>
+                    </div>
+                </section>
+                <section class="book-management-container">
+                    <h1 class="title">Список книг</h1>
+                    <div class="book-management books-list">
+                        <div class="books-list__container js__list-container">
+
+                        </div>
+                        <div class="book__drop-dawn-area books-list__drop-dawn-area js__books-list-area">drop down area</div>
+                    </div>
+                </section>
+                <section class="book-management-container">
+                    <h1 class="title">Добавить книгу</h1>
+
+                    <form class="book-form js__form">
+                        <div class="book-form__radio-container">
+                            <input class="book-form__radio js__load-book" name="load-type" type="radio" id="load" value="load">
+                            <label class="book-form__label" for="load">Загрузить книгу</label>
+                        </div>
+                        <div class="book-form__radio-container">
+                            <input class="book-form__radio js__create-book" name="load-type" type="radio" id="create" value="create">
+                            <label class="book-form__label" for="create">Создать самому</label>
+                        </div>
+                        <div class="book-form__new-bock-container js__new-bock-container">
+
+                        </div>
+                    </form>
+                </section>
+            </section>
+            <section class="reading-screen">
+                <h1 class="reading-screen__title js__screen-title"></h1>
+                <p class="reading-screen__text js__screen-text"></p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+
+
+<!--<div class="books-list__item book">-->
+<!--    <h2 class="book__title">Book number</h2>-->
+
+<!--    <div class="book__buttons-container">-->
+<!--        <button class="book__button book__edit-button">Ред.</button>-->
+<!--        <button class="book__button book__done-button">Прочитал</button>-->
+<!--        <button class="book__button book__read-button">Читать</button>-->
+<!--        <button class="book__button book__delete-button">Х</button>-->
+<!--    </div>-->
+<!--</div>-->

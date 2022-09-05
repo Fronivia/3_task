@@ -1,0 +1,106 @@
+.book {
+    height: 30px;
+    padding: 0 11px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book + .book {
+    margin-top: 26px;
+}
+
+.book__title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.017em;
+
+    color: #000000;
+}
+
+.book__title::before {
+    content: '-';
+    display: inline;
+    position: relative;
+}
+
+.book__buttons-container {
+    display: flex;
+}
+
+.book__button {
+    height: 22px;
+
+    border: 2px solid #000000;
+    border-radius: 6px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #000000;
+
+}
+
+
+.book__edit-button {
+    margin-right: 5px;
+    padding-right: 8px;
+    padding-left: 7px;
+}
+
+.book__done-button {
+    margin-right: 7px;
+    padding-right: 8px;
+    padding-left: 9px;
+}
+
+.book__done-button_done {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.book__read-button {
+    margin-right: 6px;
+    padding-right: 8px;
+    padding-left: 7px;
+}
+
+.book__delete-button {
+    padding: 0 12px;
+}
+
+
+.book__drop-dawn-area {
+    width: auto;
+    height: 37px;
+    background: #F1F0F0;
+    border: 1px dashed #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #000000;
+}
