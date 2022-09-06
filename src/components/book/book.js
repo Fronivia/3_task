@@ -1,14 +1,15 @@
-function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, status, date) {
+// Функция для рендера книги
+// Пропсы либо передаются (например когда мы рендерим исходя из данных в массиве)
+// Либо берутся из активного стора, который хранит введеный пользователем заголовок и текст
+
+function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, status, date, type) {
 
     // Создаем книжку и прокидываем все поля и аттрибуты
     const book = wrapElement(document.createElement('div'))
         .addClass('books-list__item')
         .addClass('book')
         .setAttrb('draggable', 'true')
-        .addListener('drag', event => {
-            console.log('drag')})
-        .addListener('dragstart', (event) => {
-            console.log('dragstart')})
+        .addListener('dragstart', event => event.dataTransfer.setData('book', currentId));
 
     const title = wrapElement(document.createElement('h2'))
         .addClass('book__title')
@@ -17,17 +18,20 @@ function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, 
     const buttonsContainer = wrapElement(document.createElement('div'))
         .addClass('book__buttons-container');
 
-    const bookListArea = document.querySelector('.js__list-container');
+    const bookListArea = type === 'favorite'
+        ? document.querySelector('.js__favorite-books')
+        : document.querySelector('.js__list-container');
 
     const editButton = createBookButton('book__edit-button', 'Ред.');
     const doneButton = createBookButton('book__done-button', 'Прочитал');
     const readButton = createBookButton('book__read-button', 'Читать');
     const deleteButton = createBookButton('book__delete-button', 'X');
 
+    if (type === 'favorite') deleteButton.addClass('js__delete-button');
+    if (status === 'done') doneButton.addClass('book__done-button_done');
+
     buttonsContainer.append(editButton.$el, doneButton.$el, readButton.$el, deleteButton.$el);
     book.append(title.$el, buttonsContainer.$el);
-
-    if (status === 'done') doneButton.addClass('book__done-button_done');
 
     book.addListener('click', readBook);
     deleteButton.addListener('click', deleteBook);
@@ -36,7 +40,6 @@ function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, 
 
     // При клике на книжку - она появляется в правом углу экрана
     function readBook(event) {
-        console.log('проверка')
         event.preventDefault();
         const titleArea = document.querySelector('.js__screen-title');
         const textArea = document.querySelector('.js__screen-text');
@@ -87,13 +90,36 @@ function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, 
     function deleteBook(event) {
         event.preventDefault();
         event.stopPropagation();
+
+
+        if (event.target.classList.contains('js__delete-button')) {
+            const currentBook = favoriteBooks.findIndex( book => book.id === currentId);
+            favoriteBooks.splice(currentBook, 1);
+            setDataInStorage('favoriteBooks', favoriteBooks);
+            clearBookListContainer('favorite');
+            initialRender('favorite');
+            clearReadingScreen();
+            return;
+        }
+
+
         const currentBook = library.findIndex( book => book.id === currentId);
         library.splice(currentBook, 1);
+        const currentFavoriteBook = favoriteBooks.findIndex(book => book.id === currentId);
+
+        if (currentFavoriteBook !== -1) {
+            favoriteBooks.splice(currentFavoriteBook, 1);
+            setDataInStorage('favoriteBooks', favoriteBooks);
+            clearBookListContainer('favorite');
+            initialRender('favorite');
+        }
+
         setDataInStorage('books', library);
         clearBookListContainer();
         initialRender();
         clearReadingScreen();
     }
+
     bookListArea.append(book.$el);
 
     clearStore();
@@ -121,6 +147,15 @@ function changeStatus(currentId, event) {
         status: library[currentBook].status === 'unread' ? 'done' : 'unread'
     }
 
+    const currentFavoriteBook = favoriteBooks.findIndex(book => book.id === currentId);
+
+    if (currentFavoriteBook !== -1) {
+        favoriteBooks.splice(currentFavoriteBook, 1, editedBook);
+        setDataInStorage('favoriteBooks', favoriteBooks);
+        clearBookListContainer('favorite');
+        initialRender('favorite');
+    }
+
     library.splice(currentBook, 1, editedBook);
     setDataInStorage('books', library);
     clearBookListContainer();
@@ -140,7 +175,18 @@ function saveText(currentId, container, event) {
     }
 
     library.splice(currentBook, 1, editedBook);
+
     setDataInStorage('books', library);
+
+    const currentFavoriteBook = favoriteBooks.findIndex(book => book.id === editedBook.id);
+
+    if (currentFavoriteBook !== -1) {
+        favoriteBooks.splice(currentFavoriteBook, 1, editedBook);
+        setDataInStorage('favoriteBooks', favoriteBooks);
+        clearBookListContainer('favorite');
+        initialRender('favorite');
+    }
+
     clearBookListContainer();
     initialRender();
     container.$el.remove()
