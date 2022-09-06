@@ -44,8 +44,13 @@
                             <input class="book-form__radio js__create-book" name="load-type" type="radio" id="create" value="create">
                             <label class="book-form__label" for="create">Создать самому</label>
                         </div>
-                        <div class="book-form__new-bock-container js__new-bock-container">
-
+                        <div class="book-form__new-bock-container js__new-bock-container js__create-book-form">
+                            <input type="text" class="book-form__book-title js__create-book-input" placeholder="Заголовок">
+                            <textarea class="book-form__book-text js__create-book-textarea" placeholder="Описание"></textarea>
+                            <input type="submit" value="Отправить" class="js__create-book-button"/>
+                        </div>
+                        <div class="book-form__new-bock-container js__new-bock-container js__load-book-form">
+                            <input type="file">
                         </div>
                     </form>
                 </section>
@@ -59,26 +64,3 @@
 </body>
 </html>
 
-
-<!--<div class="books-list__item book">-->
-<!--    <h2 class="book__title">Book number</h2>-->
-
-<!--    <div class="book__buttons-container">-->
-<!--        <button class="book__button book__edit-button">Ред.</button>-->
-<!--        <button class="book__button book__done-button">Прочитал</button>-->
-<!--        <button class="book__button book__read-button">Читать</button>-->
-<!--        <button class="book__button book__delete-button">Х</button>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!--<div class="favorite-books__item book">-->
-<!--    <h2 class="book__title">Book number</h2>-->
-
-<!--    <div class="book__buttons-container">-->
-<!--        <button class="book__button book__edit-button">Ред.</button>-->
-<!--        <button class="book__button book__done-button">Прочитал</button>-->
-<!--        <button class="book__button book__read-button">Читать</button>-->
-<!--        <button class="book__button book__delete-button">Х</button>-->
-<!--    </div>-->
-<!--</div>-->

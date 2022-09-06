@@ -9,6 +9,7 @@ function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, 
         .addClass('books-list__item')
         .addClass('book')
         .setAttrb('draggable', 'true')
+        .setAttrb('tabindex', '1')
         .addListener('dragstart', event => event.dataTransfer.setData('book', currentId));
 
     const title = wrapElement(document.createElement('h2'))
@@ -36,7 +37,7 @@ function renderBook(bookTitle = Store.title, text = Store.text, currentId = id, 
     book.addListener('click', readBook);
     deleteButton.addListener('click', deleteBook);
     editButton.addListener('click', editBook);
-    doneButton.addListener('click', changeStatus.bind(this, currentId))
+    doneButton.addListener('click', changeStatus.bind(this, currentId));
 
     // При клике на книжку - она появляется в правом углу экрана
     function readBook(event) {

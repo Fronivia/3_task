@@ -7,7 +7,6 @@ let id = 0;
 initId();
 
 // Находим нужные нам элементы и добавляем прослушку событий
-const bookContainer = document.querySelector('.js__new-bock-container');
 const loadRadio = document.querySelector('.js__load-book');
 const createRadio = document.querySelector('.js__create-book');
 
@@ -29,33 +28,25 @@ function chooseLoadType(event) {
 // Создание формы для отправки файла
 function createLoadForm() {
 
-    const loadBookInput = wrapElement(document.createElement('input'))
-        .addType('file')
-        .addListener('change', loadBook);
+    const loadBookInput = document.querySelector('.js__load-book-form');
+    loadBookInput.style.display = 'flex';
+    loadBookInput.addEventListener('change', loadBook);
 
-    bookContainer.append(loadBookInput.$el);
     clearStore();
 }
 
 // форма для создания книги
 function createBookForm() {
-    const bookTitle = wrapElement(document.createElement('input'));
-    const bookText = wrapElement(document.createElement('textarea'));
-    const submitButton = wrapElement(document.createElement('button'));
+    const createForm = document.querySelector('.js__create-book-form');
+    createForm.style.display = 'flex';
 
+    const bookTitle = document.querySelector('.js__create-book-input');
+    const bookText = document.querySelector('.js__create-book-textarea');
+    const submitButton = document.querySelector('.js__create-book-button')
 
-    bookTitle.addClass('book-form__book-title')
-        .addListener('input', createTitle);
-
-    bookText.addClass('book-form__book-text')
-        .addListener('input', createText);
-
-    submitButton.setText('Отправить')
-        .addListener('click', createBook);
-
-    bookContainer.append(bookTitle.$el);
-    bookContainer.append(bookText.$el);
-    bookContainer.append(submitButton.$el);
+    bookTitle.addEventListener('input', createTitle);
+    bookText.addEventListener('input', createText);
+    submitButton.addEventListener('click', createBook);
 }
 
 // Функция с помощью которой создается книжка

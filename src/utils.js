@@ -12,7 +12,13 @@ function initId() {
 
 // Очищает элемент
 function clearContainer() {
-    bookContainer.innerHTML = '';
+    const containers = document.querySelectorAll('.js__new-bock-container');
+    for (let container of containers) {
+        container.style.display = 'none';
+    }
+
+    document.querySelector('.js__create-book-input').value = '';
+    document.querySelector('.js__create-book-textarea').value = '';
 }
 
 // ЗАГРУЗКА ТЕКСТА

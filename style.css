@@ -7,10 +7,13 @@
     padding: 0;
 }
 
+body {
+    background:  #F1EEEE;
+}
+
 .app {
     height: 100vh;
     width: 100vw;
-    background:  #F1EEEE;
 }
 
 .modal-window {
@@ -86,14 +89,13 @@
 
 .library {
     height: auto;
-    /*ЗАМЕТКА ЦЕНТИРОВАТЬ*/
     padding: 63px 178px 0 178px;
-    min-width: 782px;
 }
 
 .book-management-container {
     width: 100%;
     min-width: 782px;
+    padding-bottom: 35px;
 }
 
 .title {
@@ -179,7 +181,7 @@
 .book-form__book-title {
     height: 43px;
     width: 100%;
-
+    padding: 0 17px;
     background: #FFFFFF;
     border: 2px solid #000000;
 
@@ -196,8 +198,10 @@
 }
 
 .book-form__book-text {
-    height: 139px;
-    width: 100%;
+    min-height: 139px;
+    max-height: 139px;
+    max-width: 100%;
+    padding: 17px;
 
     background: #FFFFFF;
     border: 2px solid #000000;
@@ -210,6 +214,7 @@
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
     color: rgba(0, 0, 0);
 }
@@ -223,7 +228,7 @@
 
     background: #E5E5E5;
     border: 10px solid #F0F0F0;
-    box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.5), inset 0px 0px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -254,4 +259,14 @@
 
     color: rgba(0, 0, 0, 0.8);
 
+}
+
+/* */
+
+.js__create-book-form {
+    display: none;
+}
+
+.js__load-book-form {
+    display: none;
 }
